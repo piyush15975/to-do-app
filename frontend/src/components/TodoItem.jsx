@@ -11,7 +11,7 @@ function TodoItem({ todo, onUpdate, onDelete }) {
 
   const handleToggle = async () => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/todos/${todo._id}`, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/todos/${todo._id}`, {
         completed: !todo.completed,
       });
       onUpdate(res.data);
@@ -22,7 +22,7 @@ function TodoItem({ todo, onUpdate, onDelete }) {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/todos/${todo._id}`, { title });
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/todos/${todo._id}`, { title });
       onUpdate(res.data);
       setIsEditing(false);
     } catch (err) {
@@ -32,7 +32,7 @@ function TodoItem({ todo, onUpdate, onDelete }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${todo._id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/todos/${todo._id}`);
       onDelete(todo._id);
     } catch (err) {
       console.error(err.response?.data?.message || 'Delete failed');

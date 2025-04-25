@@ -9,7 +9,7 @@ function TodoList({ todos, setTodos }) {
     if (!newTitle.trim()) return;
 
     try {
-      const res = await axios.post('http://localhost:5000/api/todos', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/todos`, {
         title: newTitle,
         completed: false,
       });

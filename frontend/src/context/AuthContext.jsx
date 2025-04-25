@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', { username, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, { username, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
       setUser({ token: res.data.token });
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', { username, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, { username, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
       setUser({ token: res.data.token });
